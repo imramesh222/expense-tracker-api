@@ -32,7 +32,7 @@ python3 manage.py runserver
 - GET `/api/expenses/` — List (paginated)
 - POST `/api/expenses/` — Create
 - GET `/api/expenses/{id}/` — Retrieve
-- PUT `/api/expenses/{id}/` — Update
+- PUT `/api/expenses/{id}/` — Update 
 - DELETE `/api/expenses/{id}/` — Delete
 
 ## Example Request/Response
@@ -40,31 +40,43 @@ python3 manage.py runserver
 ```json
 POST /api/auth/register/
 {
-  "username": "testuser",
-  "password": "Testpass123",
-  "password2": "Testpass123",
-  "email": "test@example.com"
+  "username": "ramesh",
+  "password": "ramesh@222",
+  "password2": "ramesh@222",
+  "email": "ramesh@gmail.com",
+  "first_name": "Ramesh",
+  "last_name": "Rawat"
 }
+Response: {
+    "username": "ramesh",
+    "email": "ramesh@gmail.com",
+    "first_name": "Ramesh",
+    "last_name": "Rawat"
+}
+
 ```
 
 ### Login
 ```json
 POST /api/auth/login/
 {
-  "username": "testuser",
-  "password": "Testpass123"
+  "username": "ramesh",
+  "password": "ramesh@222"
 }
-Response: { "refresh": "...", "access": "..." }
+Response: {
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MTc0MjAwMywiaWF0IjoxNzUxNjU1NjAzLCJqdGkiOiI2OGQ2N2ZmNzI5YzE0NDY4OWU3ZWI3YjU3Y2Q4ZmJiNyIsInVzZXJfaWQiOjR9.cSBFCZj-PdQX17cUIct2K2oz7ksHkNwoorU92zFLneM",
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNjU1OTAzLCJpYXQiOjE3NTE2NTU2MDMsImp0aSI6IjNhNjc4MGM0Nzk5YjQ2ZDU4OTgxNTdhMmVmMjRkNTkzIiwidXNlcl9pZCI6NH0.gyTG1avJXlhCId0BTgu2sVZImG6_z7liw4QuTIs75io"
+}
 ```
 
 ### Create Expense
 ```json
 POST /api/expenses/
 {
-  "title": "Grocery Shopping",
-  "amount": 100.00,
+  "title": "Zero Tax Test",
+  "amount": 100,
   "transaction_type": "debit",
-  "tax": 10.00,
+  "tax": 0,
   "tax_type": "flat"
 }
 ```
@@ -72,35 +84,99 @@ POST /api/expenses/
 ### Single Record Response
 ```json
 {
-  "id": 1,
-  "title": "Grocery Shopping",
-  "description": "Weekly groceries",
-  "amount": 100.00,
-  "transaction_type": "debit",
-  "tax": 10.00,
-  "tax_type": "flat",
-  "total": 110.00,
-  "created_at": "2025-01-01T10:00:00Z",
-  "updated_at": "2025-01-01T10:00:00Z"
+    "id": 8,
+    "title": "Zero Tax Test",
+    "description": null,
+    "amount": "100.00",
+    "transaction_type": "debit",
+    "tax": "0.00",
+    "tax_type": "flat",
+    "total": 100.0,
+    "created_at": "2025-07-04T18:57:41.742228Z",
+    "updated_at": "2025-07-04T18:57:41.742252Z"
 }
 ```
 
 ### List Response (Paginated)
 ```json
 {
-  "count": 25,
-  "next": "http://api/expenses/?page=2",
-  "previous": null,
-  "results": [
-    {
-      "id": 1,
-      "title": "Grocery Shopping",
-      "amount": 100.00,
-      "transaction_type": "debit",
-      "total": 110.00,
-      "created_at": "2025-01-01T10:00:00Z"
-    }
-  ]
+    "count": 6,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 8,
+            "title": "Zero Tax Test",
+            "description": null,
+            "amount": "100.00",
+            "transaction_type": "debit",
+            "tax": "0.00",
+            "tax_type": "flat",
+            "total": 100.0,
+            "created_at": "2025-07-04T18:57:41.742228Z",
+            "updated_at": "2025-07-04T18:57:41.742252Z"
+        },
+        {
+            "id": 7,
+            "title": "Percentage Tax Test",
+            "description": null,
+            "amount": "100.00",
+            "transaction_type": "debit",
+            "tax": "10.00",
+            "tax_type": "percentage",
+            "total": 110.0,
+            "created_at": "2025-07-04T18:57:23.275353Z",
+            "updated_at": "2025-07-04T18:57:23.275379Z"
+        },
+        {
+            "id": 6,
+            "title": "Flat Tax Test",
+            "description": null,
+            "amount": "1000.00",
+            "transaction_type": "debit",
+            "tax": "100.00",
+            "tax_type": "flat",
+            "total": 1100.0,
+            "created_at": "2025-07-04T18:56:19.641018Z",
+            "updated_at": "2025-07-04T18:56:19.641052Z"
+        },
+        {
+            "id": 4,
+            "title": "Zero Tax Test",
+            "description": null,
+            "amount": "100.00",
+            "transaction_type": "debit",
+            "tax": "0.00",
+            "tax_type": "flat",
+            "total": 100.0,
+            "created_at": "2025-07-04T17:38:16.891910Z",
+            "updated_at": "2025-07-04T17:38:16.891942Z"
+        },
+        {
+            "id": 3,
+            "title": "Percentage Tax Test",
+            "description": null,
+            "amount": "100.00",
+            "transaction_type": "debit",
+            "tax": "10.00",
+            "tax_type": "percentage",
+            "total": 110.0,
+            "created_at": "2025-07-04T17:37:59.465476Z",
+            "updated_at": "2025-07-04T17:37:59.465512Z"
+        },
+        {
+            "id": 1,
+            "title": "Grocery Shopping",
+            "description": "Weekly groceries",
+            "amount": "100.00",
+            "transaction_type": "debit",
+            "tax": "10.00",
+            "tax_type": "flat",
+            "total": 110.0,
+            "created_at": "2025-07-04T12:30:03.218911Z",
+            "updated_at": "2025-07-04T12:30:03.218947Z"
+        }
+    ]
 }
 ```
 
