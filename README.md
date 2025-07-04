@@ -1,7 +1,7 @@
 # Django Expense & Income Tracker API
 
 ## Overview
-A RESTful API for tracking personal expenses and income with JWT authentication, tax calculation, and user access control.
+A RESTful API for tracking personal expenses and income with JWT authentication, tax calculation, and user access control. Built with Django, Django REST Framework, and SQLite for development. Suitable for internship/portfolio demonstration.
 
 ## Features
 - User registration and JWT login
@@ -9,6 +9,18 @@ A RESTful API for tracking personal expenses and income with JWT authentication,
 - Flat and percentage tax calculation
 - Paginated responses
 - Superuser can access all records
+
+## Authentication
+All endpoints (except registration and login) require a valid JWT access token in the `Authorization` header:
+```
+Authorization: Bearer <access_token>
+```
+Obtain your token via the login endpoint and include it in all protected requests.
+
+## Permissions
+- **Regular users:** Can only access and manage their own expense/income records.
+- **Superusers:** Can access and manage all users' records.
+
 
 ## Setup
 ```bash
@@ -180,6 +192,7 @@ POST /api/expenses/
 }
 ```
 
+
 ## Testing Checklist
 - User registration/login/token refresh
 - CRUD for expenses/income
@@ -187,5 +200,11 @@ POST /api/expenses/
 - Permissions (user vs superuser)
 - JWT required for all endpoints
 
+## Contribution
+Contributions are welcome! Please fork the repo and submit a pull request.
+
+## Contact
+For questions or feedback, contact [your.email@example.com] or [LinkedIn profile].
+
 ## License
-MIT
+MIT 
